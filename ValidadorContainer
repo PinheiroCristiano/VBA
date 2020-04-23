@@ -116,13 +116,16 @@ Function validaContainerCris(container As String) As String
                 multiplicador = 512
         End Select
         
-        calculo(iterador) = (Int(vContainer(iterador)) * 2 ^ indice) * multiplicador
+        calculo(iterador) = (Int(vContainer(iterador)) * 2 ^ iterador) * multiplicador
         calculo(10) = calculo(10) + calculo(iterador)
         
     Next
-  
-    calculo(10) = calculo(10) - Int(calculo(10) / 11) * 11
     
+    calculo(10) = calculo(10) - Int(calculo(10) / 11)
+    If (calculo(10) > 9) Then
+        calculo(10) = 0
+    End If
+        
     If digVerificador = calculo(10) Then
         validaContainerCris = "Núm CNTR OK"
     Else
