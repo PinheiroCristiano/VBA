@@ -1,0 +1,144 @@
+Function validaContainerCris(container As String) As String
+    
+    'Declarações
+    Dim vContainer(10) As String
+    Dim calculo(10) As Double
+    Dim iterador As Integer
+    Dim textoContainer(3) As String
+    Dim numeroContainer(6) As String
+    Dim valorLetra(3) As Double
+    Dim multiplicador As Double
+    
+    '-----------------------------------------------------------------------
+    'Divisão de letras e números
+    digVerificador = Mid$(container, 11, 1)
+    
+    For iterador = 0 To 3
+        textoContainer(iterador) = UCase(Mid$(container, iterador + 1, 1))
+    Next
+    
+    For iterador = 0 To 6
+        numeroContainer(iterador) = Mid$(container, iterador + 5, 1)
+        vContainer(iterador + 4) = numeroContainer(iterador)
+    Next
+    '-----------------------------------------------------------------------
+     
+    'Vetor com o valor numerico das letras
+    'A=10, B=12, C=13, D=14, E=15, F=16, G=17, H=18, I=19, J=20,
+    'K=21, L=23, M=24, N=25, O=26, P=27, Q=28, R=29, S=30, T=31,
+    'U=32, V=34, W=35, X=36, Y=37, Z=38
+    
+    For iterador = 0 To 3
+    
+        Select Case textoContainer(iterador)
+            Case "A"
+                vContainer(iterador) = 10
+            Case "B"
+                vContainer(iterador) = 12
+            Case "C"
+                vContainer(iterador) = 13
+            Case "D"
+                vContainer(iterador) = 14
+            Case "E"
+                vContainer(iterador) = 15
+            Case "F"
+                vContainer(iterador) = 16
+            Case "G"
+                vContainer(iterador) = 17
+            Case "H"
+                vContainer(iterador) = 18
+            Case "I"
+                vContainer(iterador) = 19
+            Case "J"
+                vContainer(iterador) = 20
+            Case "K"
+                vContainer(iterador) = 21
+            Case "L"
+                vContainer(iterador) = 23
+             Case "M"
+                vContainer(iterador) = 24
+            Case "N"
+                vContainer(iterador) = 25
+            Case "O"
+                vContainer(iterador) = 26
+            Case "P"
+                vContainer(iterador) = 27
+            Case "Q"
+                vContainer(iterador) = 28
+            Case "R"
+                vContainer(iterador) = 29
+            Case "S"
+                vContainer(iterador) = 30
+            Case "T"
+                vContainer(iterador) = 31
+            Case "U"
+                vContainer(iterador) = 32
+            Case "V"
+                vContainer(iterador) = 34
+            Case "W"
+                vContainer(iterador) = 35
+            Case "X"
+                vContainer(iterador) = 36
+            Case "Y"
+                vContainer(iterador) = 37
+            Case "Z"
+                vContainer(iterador) = 38
+        End Select
+        
+    Next
+    
+    '-----------------------------------------------------------------------
+   
+    
+    calculo(10) = 0
+    
+    For iterador = 0 To 9
+    
+        Select Case iterador
+            Case 0
+                multiplicador = 1
+            Case 1
+                multiplicador = 2
+            Case 2
+                multiplicador = 4
+            Case 3
+                multiplicador = 8
+            Case 4
+                multiplicador = 16
+            Case 5
+                multiplicador = 32
+            Case 6
+                multiplicador = 64
+            Case 7
+                multiplicador = 128
+            Case 8
+                multiplicador = 256
+            Case 9
+                multiplicador = 512
+        End Select
+        
+        calculo(iterador) = (Int(vContainer(iterador)) * 2 ^ indice) * multiplicador
+        calculo(10) = calculo(10) + calculo(iterador)
+        
+    Next
+    
+    'A soma da Multiplicação das posições deve dividir por 11
+    '=> Soma_P/11 = DivSoma
+    'Soma Total = 2612
+    '2612 / 11 = 237,45454545
+    'A parte inteira de DivSoma * 11 = MultSoma
+    '237 * 11 = 2607
+    'A subtração da MultSoma - Soma_P = Dígito verificador.
+    '2612 – 2607 = 5
+    
+    calculo(10) = calculo(10) - Int(calculo(10) / 11) * 11
+    
+    
+    If digVerificador = calculo(10) Then
+        validaContainerCris = "Núm CNTR OK"
+    Else
+        validaContainerCris = "Núm CNTR Inválido"
+    End If
+    
+End Function
+
