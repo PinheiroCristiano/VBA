@@ -121,18 +121,8 @@ Function validaContainerCris(container As String) As String
         calculo(10) = calculo(10) + calculo(iterador)
         
     Next
-    
-    'A soma da Multiplicação das posições deve dividir por 11
-    '=> Soma_P/11 = DivSoma
-    'Soma Total = 2612
-    '2612 / 11 = 237,45454545
-    'A parte inteira de DivSoma * 11 = MultSoma
-    '237 * 11 = 2607
-    'A subtração da MultSoma - Soma_P = Dígito verificador.
-    '2612 – 2607 = 5
-    
+  
     calculo(10) = calculo(10) - Int(calculo(10) / 11) * 11
-    
     
     If digVerificador = calculo(10) Then
         validaContainerCris = "Núm CNTR OK"
