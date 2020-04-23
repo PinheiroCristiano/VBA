@@ -6,7 +6,6 @@ Function validaContainerCris(container As String) As String
     Dim iterador As Integer
     Dim textoContainer(3) As String
     Dim numeroContainer(6) As String
-    Dim valorLetra(3) As Double
     Dim multiplicador As Double
     
     '-----------------------------------------------------------------------
