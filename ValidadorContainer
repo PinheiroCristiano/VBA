@@ -3,10 +3,11 @@ Function validaContainerCris(container As String) As String
     'Declarações
     Dim vContainer(10) As String
     Dim calculo(10) As Double
-    Dim iterador As Integer
+    Dim iterador As Byte
     Dim textoContainer(3) As String
     Dim numeroContainer(6) As String
     Dim multiplicador As Double
+
     
     '-----------------------------------------------------------------------
     'Divisão de letras e números
@@ -87,7 +88,6 @@ Function validaContainerCris(container As String) As String
     Next
     
     '-----------------------------------------------------------------------
-   
     
     calculo(10) = 0
     
@@ -116,12 +116,14 @@ Function validaContainerCris(container As String) As String
                 multiplicador = 512
         End Select
         
-        calculo(iterador) = (Int(vContainer(iterador)) * 2 ^ iterador) * multiplicador
+        calculo(iterador) = vContainer(iterador) * (2 ^ iterador)
         calculo(10) = calculo(10) + calculo(iterador)
         
     Next
     
-    calculo(10) = calculo(10) - Int(calculo(10) / 11)
+    calculo(10) = calculo(10) - (Int(calculo(10) / 11) * 11)
+    
+    
     If (calculo(10) > 9) Then
         calculo(10) = 0
     End If
@@ -133,4 +135,3 @@ Function validaContainerCris(container As String) As String
     End If
     
 End Function
-
